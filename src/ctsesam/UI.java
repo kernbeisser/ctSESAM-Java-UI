@@ -5,8 +5,6 @@
  */
 package ctsesam;
 
-import java.util.Arrays;
-
 /**
  *
  * @author tom
