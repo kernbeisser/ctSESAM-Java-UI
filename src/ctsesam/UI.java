@@ -38,13 +38,13 @@ public class UI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtDomain = new javax.swing.JTextField();
         txtMasterPW = new javax.swing.JPasswordField();
         cbSecialChars = new javax.swing.JCheckBox();
         cbLetters = new javax.swing.JCheckBox();
         cbNumbers = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
         txtHashedPW = new javax.swing.JTextField();
+        cbDomain = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         btnClose = new javax.swing.JButton();
         btnHash = new javax.swing.JButton();
@@ -61,9 +61,6 @@ public class UI extends javax.swing.JFrame {
         jLabel1.setText("Master Password:");
 
         jLabel2.setText("Domain:");
-
-        txtDomain.setMinimumSize(new java.awt.Dimension(200, 21));
-        txtDomain.setPreferredSize(new java.awt.Dimension(200, 21));
 
         txtMasterPW.setMinimumSize(new java.awt.Dimension(200, 21));
         txtMasterPW.setPreferredSize(new java.awt.Dimension(200, 21));
@@ -85,6 +82,8 @@ public class UI extends javax.swing.JFrame {
         txtHashedPW.setMinimumSize(new java.awt.Dimension(200, 21));
         txtHashedPW.setPreferredSize(new java.awt.Dimension(200, 21));
 
+        cbDomain.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "...", "hanser.de", "google.de", "github.com" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -98,8 +97,8 @@ public class UI extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtMasterPW, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtDomain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtHashedPW, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtHashedPW, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbDomain, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cbSecialChars)
@@ -118,14 +117,14 @@ public class UI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbLetters)
-                    .addComponent(txtDomain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(cbDomain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbNumbers)
                     .addComponent(jLabel4)
                     .addComponent(txtHashedPW, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(184, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -179,27 +178,24 @@ public class UI extends javax.swing.JFrame {
         );
 
         jLabel3.setBackground(new java.awt.Color(117, 161, 98));
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(117, 161, 98));
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ctsesam/ctSesam.png"))); // NOI18N
+        jLabel3.setText("c't SESAM");
         jLabel3.setOpaque(true);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(38, 38, 38))
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -237,7 +233,7 @@ public class UI extends javax.swing.JFrame {
         char[] password = this.txtMasterPW.getPassword();
         String mpw = String.valueOf(password);
 
-        String domain = this.txtDomain.getText();
+        String domain = (String) this.cbDomain.getSelectedItem();
         boolean specialChars = this.cbSecialChars.isSelected();
         boolean letters = this.cbLetters.isSelected();
         boolean numbers = this.cbNumbers.isSelected();
@@ -279,10 +275,10 @@ public class UI extends javax.swing.JFrame {
 
             FileReader reader = new FileReader(full);
 
-            Properties prop2 = new Properties();
-            prop2.load(reader);
+            Properties prop = new Properties();
+            prop.load(reader);
 
-            String dbpassword = prop2.getProperty("dbpassword");
+            String dbpassword = prop.getProperty("dbpassword");
             credentials = dbpassword;
 
             return credentials;
@@ -299,6 +295,7 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnHash;
+    private javax.swing.JComboBox cbDomain;
     private javax.swing.JCheckBox cbLetters;
     private javax.swing.JCheckBox cbNumbers;
     private javax.swing.JCheckBox cbSecialChars;
@@ -309,7 +306,6 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField txtDomain;
     private javax.swing.JTextField txtHashedPW;
     private javax.swing.JPasswordField txtMasterPW;
     // End of variables declaration//GEN-END:variables
