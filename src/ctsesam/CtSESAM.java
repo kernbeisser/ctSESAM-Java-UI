@@ -19,31 +19,6 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class CtSESAM {
 
-//    private String masterPassword;
-//    private String domain;
-//    private boolean specialCharacters;
-//    private boolean letters;
-//    private boolean numbers;
-//
-//    public void setMasterPassword(String masterPassword) {
-//        this.masterPassword = masterPassword;
-//    }
-//
-//    public void setDomain(String domain) {
-//        this.domain = domain;
-//    }
-//
-//    public void setSpecialCharacters(boolean specialCharacters) {
-//        this.specialCharacters = specialCharacters;
-//    }
-//
-//    public void setLetters(boolean letters) {
-//        this.letters = letters;
-//    }
-//
-//    public void setNumbers(boolean numbers) {
-//        this.numbers = numbers;
-//    }
 
     private byte[] sha512HMAC(byte[] key, byte[] password) {
         try {
@@ -217,27 +192,4 @@ public class CtSESAM {
         }
         return genPassword;
     }
-
-//    public static void main(String[] args) {
-//        Scanner user_input = new Scanner(System.in);
-//        String domain;
-//        System.out.print("Domain: ");
-//        domain = user_input.next();
-//        while (domain.length() < 1) {
-//            System.out.println("Please provide a domain for the generated Password.");
-//            System.out.print("Domain: ");
-//            domain = user_input.next();
-//        }
-//        String masterPassword;
-//        System.out.print("Masterpassword: ");
-//        masterPassword = user_input.next();
-//        try {
-//            byte[] hashString = (domain + masterPassword).getBytes("UTF-8");
-//            byte[] salt = ("pepper").getBytes("UTF-8");
-//            byte[] digest = PBKDF2_HMAC_sha512(hashString, salt, 4096);
-//            System.out.println("Password: " + getPassword(digest, true, true, true, 10));
-//        } catch (UnsupportedEncodingException e) {
-//            Logger.getLogger(CtSESAM.class.getName()).log(Level.SEVERE, "Oi...");
-//        }
-//    }
 }

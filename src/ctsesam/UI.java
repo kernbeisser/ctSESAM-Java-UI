@@ -5,6 +5,13 @@
  */
 package ctsesam;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author tom
@@ -16,6 +23,7 @@ public class UI extends javax.swing.JFrame {
      */
     public UI() {
         initComponents();
+        this.txtMasterPW.setText(get_masterpassword());
     }
 
     /**
@@ -40,6 +48,7 @@ public class UI extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btnClose = new javax.swing.JButton();
         btnHash = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -59,10 +68,13 @@ public class UI extends javax.swing.JFrame {
         txtMasterPW.setMinimumSize(new java.awt.Dimension(200, 21));
         txtMasterPW.setPreferredSize(new java.awt.Dimension(200, 21));
 
+        cbSecialChars.setSelected(true);
         cbSecialChars.setText("Special Characters");
 
+        cbLetters.setSelected(true);
         cbLetters.setText("Letters");
 
+        cbNumbers.setSelected(true);
         cbNumbers.setText("Numbers");
 
         jLabel4.setText("Hashed Password:");
@@ -132,19 +144,28 @@ public class UI extends javax.swing.JFrame {
             }
         });
 
+        btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnClear)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnHash)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnClose)
                 .addContainerGap())
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnClose, btnHash});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnClear, btnClose, btnHash});
 
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,7 +173,8 @@ public class UI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnClose)
-                    .addComponent(btnHash))
+                    .addComponent(btnHash)
+                    .addComponent(btnClear))
                 .addContainerGap())
         );
 
@@ -230,6 +252,10 @@ public class UI extends javax.swing.JFrame {
         this.txtHashedPW.setText(hashedPW);
     }//GEN-LAST:event_btnHashActionPerformed
 
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        this.txtHashedPW.setText("");
+    }//GEN-LAST:event_btnClearActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -243,7 +269,34 @@ public class UI extends javax.swing.JFrame {
         });
     }
 
+    public static String get_masterpassword() {
+
+        final String pfad = System.getProperty("user.home");
+        final String full = pfad + "/Dokumente/Development/java/data/.config.properties";
+        String credentials;
+
+        try {
+
+            FileReader reader = new FileReader(full);
+
+            Properties prop2 = new Properties();
+            prop2.load(reader);
+
+            String dbpassword = prop2.getProperty("dbpassword");
+            credentials = dbpassword;
+
+            return credentials;
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClear;
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnHash;
     private javax.swing.JCheckBox cbLetters;
