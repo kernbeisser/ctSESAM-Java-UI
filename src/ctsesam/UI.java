@@ -5,13 +5,6 @@
  */
 package ctsesam;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author tom
@@ -23,7 +16,6 @@ public class UI extends javax.swing.JFrame {
      */
     public UI() {
         initComponents();
-        this.txtMasterPW.setText(get_masterpassword());
     }
 
     /**
@@ -263,32 +255,6 @@ public class UI extends javax.swing.JFrame {
             ui.setLocationRelativeTo(null);
             ui.setVisible(true);
         });
-    }
-
-    public static String get_masterpassword() {
-
-        final String pfad = System.getProperty("user.home");
-        final String full = pfad + "/Dokumente/Development/java/data/.config.properties";
-        String credentials;
-
-        try {
-
-            FileReader reader = new FileReader(full);
-
-            Properties prop = new Properties();
-            prop.load(reader);
-
-            String dbpassword = prop.getProperty("dbpassword");
-            credentials = dbpassword;
-
-            return credentials;
-
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
